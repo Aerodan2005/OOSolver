@@ -18,9 +18,6 @@
     <ClCompile Include="OOSolver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BaseSolver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Method1Solver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

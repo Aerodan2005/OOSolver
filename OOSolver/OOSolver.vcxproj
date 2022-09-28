@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BaseSolver.cpp" />
     <ClCompile Include="Method1Solver.cpp" />
     <ClCompile Include="OOSolver.cpp" />
   </ItemGroup>
