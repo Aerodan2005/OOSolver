@@ -1,6 +1,6 @@
 #pragma once
-class matrix
+class Matrix
 {
-	int g;
+	int aHarel;
 };
 
