@@ -26,4 +26,7 @@ int main(int argc, char** argv)
 	bs->InitProblem(5, nullptr, nullptr);
 	bs->Solve();
 	delete bs;
+
+	// Clean
+	delete[] matrix, sol_vec;
 }
