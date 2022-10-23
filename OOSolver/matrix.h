@@ -2,5 +2,6 @@
 class Matrix
 {
 	int aHarel;
+	int aOmri;
 };
 
