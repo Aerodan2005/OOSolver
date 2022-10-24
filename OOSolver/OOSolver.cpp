@@ -10,10 +10,12 @@
 using namespace std;
 int main(int argc, char** argv)
 {
+	//int * cc = new int[] { 1, 5, 5, 5, 5, 3, 3, 3, 4 };
 	MathClass p1;
+	bool res = p1.LoadMatrix();
 	p1.PrintMatrix();
-	CalcDeterminant(p1.M, p1.a);
-	if (isSingular(p1.M, p1.a))
+	CalcDeterminant(p1.M, p1.probSize);
+	if (isSingular(p1.M, p1.probSize))
 	{
 		cout << "Matrix is singular.";
 	}
@@ -23,7 +25,7 @@ int main(int argc, char** argv)
 	// read the data
 	// solve method1
 	BaseSolver * bs = new Method1Solver ();
-	bs->InitProblem(5, nullptr, nullptr);
+	bs->InitProblem(5, p1.M, p1.b);
 	bs->Solve();
 	delete bs;
 	// solve method2

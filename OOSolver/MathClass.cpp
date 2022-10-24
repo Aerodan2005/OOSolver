@@ -2,38 +2,50 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-MathClass::MathClass()
+MathClass::MathClass() {
+	M = nullptr;
+	b = nullptr;
+}
+MathClass::~MathClass()
 {
+	if (M !=nullptr)
+		delete[] M;
+	if (b != nullptr)
+		delete[] b;
+}
+
+bool MathClass::LoadMatrix() {
 	ifstream inFile;
 	inFile.open("Input.txt");
-	if (!inFile) {
+	if (!inFile.is_open()) {
 		cout << "Unable to open file";
-		exit(1); // terminate with error
+		return false;
 	}
-	inFile >> a;
-	M = new double[a * a];
-	b = new double[a];
+	inFile >> probSize;
+	M = new double[probSize * probSize];
+	b = new double[probSize];
 
-	for(int i = 0; i < a*a ; i++)
+	for (int i = 0; i < probSize * probSize; i++)
 	{
 		inFile >> M[i];
 	}
 
-	for (int i = 0; i < a; i++)
+	for (int i = 0; i < probSize; i++)
 	{
 		inFile >> b[i];
 	}
 
 	inFile.close();
+	return true;
 }
 
 void MathClass::PrintMatrix()
 {
-	for (int i = 0; i < a; i++)
-		for (int j = 0; j < a; j++)
+	for (int i = 0; i < probSize; i++)
+		for (int j = 0; j < probSize; j++)
 
 			// Prints ' ' if j != n-1 else prints '\n'         
-			cout << M[i * a + j] << " \n"[j == a - 1];
+			cout << M[i * probSize + j] << " \n"[j == probSize - 1];
 }
 
 bool MathClass::isSingular()
