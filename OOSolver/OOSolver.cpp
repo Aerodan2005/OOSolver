@@ -10,8 +10,8 @@
 int main(int argc, char** argv)
 {
 	int size;			// pointer for demention of the matrix
-	double* matrix;// = NULL;		// pointer for matrix vec
-	double* sol_vec;// = NULL;	// pointer for solution vector 
+	double* matrix;     // = NULL;		// pointer for matrix vec
+	double* sol_vec;    // = NULL;	// pointer for solution vector 
 	load_file(&size,matrix,sol_vec);
 
 	std::cout << "OO Solver, received: " << argc << " arguments\n";
