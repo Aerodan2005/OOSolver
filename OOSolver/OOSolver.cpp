@@ -7,11 +7,19 @@
 #include "Method1Solver.h"
 #include "Method2Solver.h"
 #include "MathClass.h"
-
+using namespace std;
 int main(int argc, char** argv)
 {
 	MathClass p1;
-	std::cout << "OO Solver, received: " << argc << " arguments\n";
+	p1.PrintMatrix();
+	CalcDeterminant(p1.M, p1.a);
+	if (isSingular(p1.M, p1.a))
+	{
+		cout << "Matrix is singular.";
+	}
+
+
+	cout << "OO Solver, received: " << argc << " arguments\n";
 	// read the data
 	// solve method1
 	BaseSolver * bs = new Method1Solver ();

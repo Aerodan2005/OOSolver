@@ -7,5 +7,7 @@ public:
 	double* b;
 
 	MathClass();
+	void PrintMatrix();
+	bool isSingular();
 };
 

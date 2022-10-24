@@ -1,4 +1,5 @@
 #pragma once
 #include <iostream>
 
-void load_file();
+bool isSingular(double* matrix, int n);
+double CalcDeterminant(double* matrix, int n);
