@@ -6,14 +6,11 @@
 #include "BaseSolver.h"
 #include "Method1Solver.h"
 #include "Method2Solver.h"
+#include "MathClass.h"
 
 int main(int argc, char** argv)
 {
-	int size;			// pointer for demention of the matrix
-	double* matrix;// = NULL;		// pointer for matrix vec
-	double* sol_vec;// = NULL;	// pointer for solution vector 
-	load_file(&size,matrix,sol_vec);
-
+	MathClass p1;
 	std::cout << "OO Solver, received: " << argc << " arguments\n";
 	// read the data
 	// solve method1
@@ -26,7 +23,4 @@ int main(int argc, char** argv)
 	bs->InitProblem(5, nullptr, nullptr);
 	bs->Solve();
 	delete bs;
-
-	// Clean
-	delete[] matrix, sol_vec;
 }
