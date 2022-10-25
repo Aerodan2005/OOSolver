@@ -47,7 +47,7 @@ bool MathClass::LoadInput() {
 
 	singular = isSingular(M, probSize);
 	zeroVector = isZeroVector(b, probSize);
-	determinant=CalcDeterminant(M, probSize);
+	//determinant = CalcDeterminant(M, probSize);
 
 	return true;
 }
@@ -67,15 +67,15 @@ void MathClass::PrintVector(double* v, int n)
 	cout << endl;
 }
 
-void MathClass::PrintData() 
+void MathClass::PrintData()
 {
 	cout << "Given matrix:" << endl;
 	PrintMatrix();
 	cout << "Given vector:" << endl;
 	PrintVector(b, probSize);
-	cout << "Matrix is singular?  " << singular<<"\n";
-	cout << "The vector is zero?  " << zeroVector<<"\n";
-	cout << "The determinantion is:  " << determinant << "\n";
+	cout << "Is Matrix singular? " << singular << "\n";
+	cout << "Is vector zeros? " << zeroVector << "\n";
+	//cout << "The determinantion is:  " << determinant << "\n";
 
 
 };

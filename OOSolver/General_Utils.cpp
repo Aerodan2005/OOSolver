@@ -2,16 +2,14 @@
 
 bool isSingular(double* matrix, int n)
 {
-	double det;
-	det = CalcDeterminant(matrix, n);
-	return det == 0;
+	return CalcDeterminant(matrix, n) == 0;
 }
 
 double CalcDeterminant(double* matrix, int n)
 // This function calculates the determinant of a square matrix using recursion  
 {
 	double det = 0;
-	double submatrix[10]; // 10 is the limit of 
+	double submatrix[10]; // 10 is the limit of the dimension size
 	if (n == 2)
 		return ((matrix[0] * matrix[3]) - (matrix[1] * matrix[2]));
 	else {

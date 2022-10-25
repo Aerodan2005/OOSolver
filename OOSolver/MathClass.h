@@ -7,10 +7,9 @@ public:
 	int probSize;
 	double* M;
 	double* b;
-	double determinant;
+	//double determinant;
 	bool singular;
 	bool zeroVector;
-
 
 	MathClass();
 	~MathClass();
