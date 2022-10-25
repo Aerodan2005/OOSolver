@@ -6,6 +6,9 @@ using namespace std;
 MathClass::MathClass() {
 	M = nullptr;
 	b = nullptr;
+	probSize = 0;
+	singular = false;
+	zeroVector = false;
 }
 
 MathClass::~MathClass()
@@ -14,10 +17,12 @@ MathClass::~MathClass()
 	if (b != nullptr) delete[] b;
 }
 
-bool MathClass::LoadInput() {
+bool MathClass::LoadInput()
+{
 	ifstream inFile;
 	inFile.open("Input.txt");
-	if (!inFile.is_open()) {
+	if (!inFile.is_open())
+	{
 		cout << "Unable to open file";
 		exit(EXIT_FAILURE);
 	}
@@ -34,14 +39,10 @@ bool MathClass::LoadInput() {
 	b = new double[probSize];
 
 	for (int i = 0; i < probSize * probSize; i++)
-	{
 		inFile >> M[i];
-	}
 
 	for (int i = 0; i < probSize; i++)
-	{
 		inFile >> b[i];
-	}
 
 	inFile.close();
 
@@ -76,6 +77,4 @@ void MathClass::PrintData()
 	cout << "Is Matrix singular? " << singular << "\n";
 	cout << "Is vector zeros? " << zeroVector << "\n";
 	//cout << "The determinantion is:  " << determinant << "\n";
-
-
 };
