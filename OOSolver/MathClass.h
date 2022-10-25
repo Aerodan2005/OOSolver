@@ -8,8 +8,8 @@ public:
 
 	MathClass();
 	~MathClass();
-	bool LoadMatrix();
+	bool LoadInput();
 	void PrintMatrix();
-	bool isSingular();
+	void PrintVector(double* v, int n);
 };
 

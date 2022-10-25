@@ -1,5 +1,16 @@
 // OOSolver.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+// INPUT: (in file Input.txt)
+// 1) n - dimension size of the problem 
+// 2) M - matrix of size n*n
+// 3) b - vector of size n
+// 
+// OUTPUT: 
+// 1) x - vector of size n
+//This program solves the equation Mx=b subject to x. 
+//The solution is calculated using various solvers.
+//The program checks the validity of M,b for cases of infinite solutions and no solutions.
+//For valid input, the solution is provided as the answer vector of size n for each solver.
 
 #include <iostream>
 #include "General_Utils.h"
@@ -7,30 +18,40 @@
 #include "Method1Solver.h"
 #include "Method2Solver.h"
 #include "MathClass.h"
+#include <cmath>
 using namespace std;
 int main(int argc, char** argv)
 {
-	//int * cc = new int[] { 1, 5, 5, 5, 5, 3, 3, 3, 4 };
 	MathClass p1;
-	bool res = p1.LoadMatrix();
+	bool res = p1.LoadInput();
+
+	cout << "Given matrix:" << endl;
 	p1.PrintMatrix();
+	cout << "Given vector:" << endl;
+	p1.PrintVector(p1.b, p1.probSize);
+
 	CalcDeterminant(p1.M, p1.probSize);
 	if (isSingular(p1.M, p1.probSize))
 	{
 		cout << "Matrix is singular.";
+		return false;
+	}
+	if (isZeroVector(p1.b, p1.probSize))
+	{
+		cout << "Vector equals to zero, only trivial solution exists.";
+		return false;
 	}
 
-
-	cout << "OO Solver, received: " << argc << " arguments\n";
-	// read the data
-	// solve method1
+	cout << endl << "OO Solver, received: " << argc << " arguments\n";
+	// Solve method1
 	BaseSolver * bs = new Method1Solver ();
-	bs->InitProblem(5, p1.M, p1.b);
+	bs->InitProblem(p1.probSize, p1.M, p1.b);
 	bs->Solve();
 	delete bs;
-	// solve method2
+
+	// Solve method2
 	bs = new Method2Solver();
-	bs->InitProblem(5, nullptr, nullptr);
+	bs->InitProblem(p1.probSize, p1.M, p1.b);
 	bs->Solve();
 	delete bs;
 }
