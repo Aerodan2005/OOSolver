@@ -24,25 +24,9 @@ int main(int argc, char** argv)
 {
 	MathClass p1;
 	bool res = p1.LoadInput();
+	p1.PrintData();
 
-	cout << "Given matrix:" << endl;
-	p1.PrintMatrix();
-	cout << "Given vector:" << endl;
-	p1.PrintVector(p1.b, p1.probSize);
-
-	CalcDeterminant(p1.M, p1.probSize);
-	if (isSingular(p1.M, p1.probSize))
-	{
-		cout << "Matrix is singular.";
-		return false;
-	}
-	if (isZeroVector(p1.b, p1.probSize))
-	{
-		cout << "Vector equals to zero, only trivial solution exists.";
-		return false;
-	}
-
-	cout << endl << "OO Solver, received: " << argc << " arguments\n";
+ 	cout << endl << "OO Solver, received: " << argc << " arguments\n";
 	// Solve method1
 	BaseSolver * bs = new Method1Solver ();
 	bs->InitProblem(p1.probSize, p1.M, p1.b);
@@ -54,4 +38,6 @@ int main(int argc, char** argv)
 	bs->InitProblem(p1.probSize, p1.M, p1.b);
 	bs->Solve();
 	delete bs;
+
+	//int x; cin >> x;
 }
