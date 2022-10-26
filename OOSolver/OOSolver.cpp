@@ -16,13 +16,14 @@
 #include "General_Utils.h"
 #include "BaseSolver.h"
 #include "Method1Solver.h"
-#include "Method2Solver.h"
+//#include "Method2Solver.h"
 #include "MathClass.h"
 #include <cmath>
 using namespace std;
 int main(int argc, char** argv)
 {
 	MathClass p1;
+	MathClass p2;
 	bool res = p1.LoadInput();
 	p1.PrintData();
 	MultiMatrixWithVector(p1.probSize, p1.M, p1.b);
@@ -31,15 +32,15 @@ int main(int argc, char** argv)
  	cout << endl << "OO Solver, received: " << argc << " arguments\n";
 	// Solve method1
 	BaseSolver * bs = new Method1Solver ();
-	bs->InitProblem(p1.probSize, p1.M, p1.b);
+	bs->Init(&p1);
 	bs->Solve();
 	delete bs;
 
 	// Solve method2
-	bs = new Method2Solver();
-	bs->InitProblem(p1.probSize, p1.M, p1.b);
-	bs->Solve();
-	delete bs;
+	//bs = new Method2Solver();
+	//bs->InitProblem(p1.probSize, p1.M, p1.b);
+	//bs->Solve();
+	//delete bs;
 
 	//int x; cin >> x;
 }
