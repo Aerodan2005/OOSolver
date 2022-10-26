@@ -1,5 +1,8 @@
 #pragma once
-class BaseSolver
+#include "MathClass.h"
+#include "General_Utils.h"
+
+class BaseSolver //: public MathClass
 {
   int order = 0;
   double * matrix = nullptr;

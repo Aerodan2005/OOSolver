@@ -25,7 +25,9 @@ int main(int argc, char** argv)
 	MathClass p1;
 	bool res = p1.LoadInput();
 	p1.PrintData();
+	MultiMatrixWithVector(p1.probSize, p1.M, p1.b);
 
+	//BaseSolver alolo;
  	cout << endl << "OO Solver, received: " << argc << " arguments\n";
 	// Solve method1
 	BaseSolver * bs = new Method1Solver ();

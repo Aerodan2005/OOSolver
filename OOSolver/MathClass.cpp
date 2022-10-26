@@ -74,7 +74,7 @@ void MathClass::PrintData()
 	PrintMatrix();
 	cout << "Given vector:" << endl;
 	PrintVector(b, probSize);
-	cout << "Is Matrix singular? " << singular << "\n";
-	cout << "Is vector zeros? " << zeroVector << "\n";
+	cout << "Is singular matrix ? " << singular << "\n";
+	cout << "Is zeros vector? " << zeroVector << "\n";
 	//cout << "The determinantion is:  " << determinant << "\n";
 };
