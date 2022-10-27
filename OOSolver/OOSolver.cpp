@@ -16,31 +16,39 @@
 #include "General_Utils.h"
 #include "BaseSolver.h"
 #include "Method1Solver.h"
-//#include "Method2Solver.h"
+#include "Method2Solver.h"
 #include "MathClass.h"
 #include <cmath>
 using namespace std;
 int main(int argc, char** argv)
-{
+{	
+	//p1 data for solver 1
 	MathClass p1;
-	MathClass p2;
-	bool res = p1.LoadInput();
+	bool res1 = p1.LoadInput();
 	p1.PrintData();
-	MultiMatrixWithVector(p1.probSize, p1.M, p1.b);
+	
+	cout << endl << "Solver, received: " << argc << " arguments\n";
+	
+	double* Multi_VecCheck_res;
+	Multi_MatrixWithVector(p1.probSize, p1.M, p1.b, Multi_VecCheck_res);
 
-	//BaseSolver alolo;
- 	cout << endl << "OO Solver, received: " << argc << " arguments\n";
 	// Solve method1
-	BaseSolver * bs = new Method1Solver ();
-	bs->Init(&p1);
-	bs->Solve();
-	delete bs;
+	BaseSolver * bs1 = new Method1Solver ();
+	bs1->Init(&p1);
+	bs1->Solve();
+	delete bs1;
+
+	// p2 data for solver 2
+	MathClass p2;
+	bool res2 = p2.LoadInput();
+	p2.PrintData();
+	cout << endl << "Solver, received: " << argc << " arguments\n";
 
 	// Solve method2
-	//bs = new Method2Solver();
-	//bs->InitProblem(p1.probSize, p1.M, p1.b);
-	//bs->Solve();
-	//delete bs;
+	BaseSolver* bs2 = new Method2Solver();
+	bs2->Init(&p2);
+	bs2->Solve();
+	delete bs2;
 
 	//int x; cin >> x;
 }
