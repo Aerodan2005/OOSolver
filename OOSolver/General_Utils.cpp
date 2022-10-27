@@ -90,7 +90,7 @@ bool MultiMatrixWithVector(int size, double* mat, double* vec)
 
 
 
-	delete vecSol;
+	delete[] vecSol;
 
 	return 0;
 };

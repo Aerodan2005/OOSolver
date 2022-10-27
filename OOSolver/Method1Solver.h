@@ -16,5 +16,9 @@ public:
 		std::cout << "In Method1Solver>>Solve: " << xxx << "\n";
 		return true;
 	}
+
+
+
+
 };
 
