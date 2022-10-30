@@ -42,22 +42,21 @@ bool isZeroVector(double* b, int n)
 	return true;
 }
 
-bool MultiMatrixWithVector(int size, double* mat, double* vec)
+bool Multi_MatrixWithVector(int size, double* mat, double* vec,double *& result)
 {
-	double* vecSol = new double[size];
+	result = new double[size];
 
 	for (int i = 0; i < size; i++) 
 	{
-		vecSol[i] = 0;
+		result[i] = 0;
 		for (int j = 0; j < size; j++) 
 		{
 			//cout << mat[i*size+j] << "_";
-			vecSol[i]= vecSol[i]+(mat[i * size + j] * vec[j]);
+			result[i]= result[i]+(mat[i * size + j] * vec[j]);
 		}
-		cout << vecSol[i];
+		cout << result[i];
 		cout << "\n";
 	}
-
 
 	for (int i = 0; i < size; i++)
 	{
@@ -84,13 +83,7 @@ bool MultiMatrixWithVector(int size, double* mat, double* vec)
 			{
 				cout << " ";
 			}
-			cout << " |" << vecSol[i] << "|" << "\n";
+			cout << " |" << result[i] << "|" << "\n";
 	}
-
-
-
-
-	delete[] vecSol;
-
 	return 0;
 };
