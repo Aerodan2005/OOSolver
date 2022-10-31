@@ -2,5 +2,5 @@
 
 #include "Method2Solver.h"
 bool solverProcedure() {
-
+	return true;
 }
