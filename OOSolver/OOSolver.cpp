@@ -34,9 +34,6 @@ int main(int argc, char** argv)
 
 		cout << endl << "Solver, received: " << argc << " arguments\n";
 
-		double* Multi_VecCheck_res;
-		Multi_MatrixWithVector(p1.probSize, p1.M, p1.b, Multi_VecCheck_res);
-
 		//Solve method1
 		BaseSolver * bs1 = new Method1Solver ();
 		bs1->Init(&p1);

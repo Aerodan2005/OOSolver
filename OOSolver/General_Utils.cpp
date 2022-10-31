@@ -1,4 +1,5 @@
 #include "General_Utils.h"
+using namespace std;
 
 bool isSingular(double* matrix, int n)
 {
@@ -42,23 +43,23 @@ bool isZeroVector(double* b, int n)
 	return true;
 }
 
-bool Multi_MatrixWithVector(int size, double* mat, double* vec,double *& result)
+bool Multi_MatrixWithVector(int size, double* mat, double* vec, double*& result)
 {
 	result = new double[size];
 
-	for (int i = 0; i < size; i++) 
+	for (int i = 0; i < size; i++)
 	{
 		result[i] = 0;
-		for (int j = 0; j < size; j++) 
+		for (int j = 0; j < size; j++)
 		{
 			//cout << mat[i*size+j] << "_";
-			result[i]= result[i]+(mat[i * size + j] * vec[j]);
+			result[i] = result[i] + (mat[i * size + j] * vec[j]);
 		}
-		cout << result[i];
-		cout << "\n";
+		//cout << result[i];
+		//cout << "\n";
 	}
 
-	for (int i = 0; i < size; i++)
+	/*for (int i = 0; i < size; i++)
 	{
 		cout << "|";
 		for (int j = 0; j < size; j++)
@@ -66,24 +67,24 @@ bool Multi_MatrixWithVector(int size, double* mat, double* vec,double *& result)
 			cout << mat[i * size + j] << " ";
 		}
 		cout << "| ";
-			if (i == 1)
-			{
-				cout << "*";
-			}
-			else
-			{
-				cout << " ";
-			}
-			cout << " |" << vec[i] << "|";
-			if (i == 1)
-			{
-				cout << "=";
-			}
-			else 
-			{
-				cout << " ";
-			}
-			cout << " |" << result[i] << "|" << "\n";
-	}
+		if (i == 1)
+		{
+			cout << "*";
+		}
+		else
+		{
+			cout << " ";
+		}
+		cout << " |" << vec[i] << "|";
+		if (i == 1)
+		{
+			cout << "=";
+		}
+		else
+		{
+			cout << " ";
+		}
+		cout << " |" << result[i] << "|" << "\n";
+	}*/
 	return 0;
 };
