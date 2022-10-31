@@ -25,13 +25,9 @@ int main(int argc, char** argv)
 	//p1 data for solver 1
 	MathClass p1;
 	bool res1 = p1.LoadInput();
-	p1.PrintData();
+	p1.PrintData();	
+	//cout << endl << "Solver, received: " << argc << " arguments\n";
 	
-	cout << endl << "Solver, received: " << argc << " arguments\n";
-	
-	double* Multi_VecCheck_res;
-	Multi_MatrixWithVector(p1.probSize, p1.M, p1.b, Multi_VecCheck_res);
-
 	// Solve method1
 	BaseSolver * bs1 = new Method1Solver ();
 	bs1->Init(&p1);
@@ -42,13 +38,11 @@ int main(int argc, char** argv)
 	MathClass p2;
 	bool res2 = p2.LoadInput();
 	p2.PrintData();
-	cout << endl << "Solver, received: " << argc << " arguments\n";
+	//cout << endl << "Solver, received: " << argc << " arguments\n";
 
 	// Solve method2
 	BaseSolver* bs2 = new Method2Solver();
 	bs2->Init(&p2);
 	bs2->Solve();
 	delete bs2;
-
-	//int x; cin >> x;
 }
