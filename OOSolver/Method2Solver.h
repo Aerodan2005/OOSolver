@@ -6,15 +6,17 @@ class Method2Solver : public BaseSolver
 {
 	MathClass* mc;
 public:
-	void Init(MathClass* mc) override {
+	void Init(MathClass* mc) override	{
 		this->mc = mc;
 	}
-
-	bool Solve() override
-	{
-		int xxx = mc->probSize;
-		std::cout << "In Method2Solver>>Solve: " << xxx << "\n";
+	bool Solve()override{
+		//int a = mc->probSize;
+		std::cout << "In Method_2_Solver>>Solve: " << mc->probSize << "\n";
+		
 		return true;
 	}
+
+private:
+	bool solverProcedure();
 };
 

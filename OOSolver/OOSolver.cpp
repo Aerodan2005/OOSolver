@@ -22,33 +22,40 @@
 using namespace std;
 int main(int argc, char** argv)
 {	
-	//p1 data for solver 1
-	MathClass p1;
-	bool res1 = p1.LoadInput();
-	p1.PrintData();
-	
-	cout << endl << "Solver, received: " << argc << " arguments\n";
-	
-	double* Multi_VecCheck_res;
-	Multi_MatrixWithVector(p1.probSize, p1.M, p1.b, Multi_VecCheck_res);
+	bool p1flag = false;
+	bool p2flag = true;
 
-	// Solve method1
-	BaseSolver * bs1 = new Method1Solver ();
-	bs1->Init(&p1);
-	bs1->Solve();
-	delete bs1;
+	// solver 1
+	if (p1flag){
+		//p1 data for solver 1
+		MathClass p1;
+		bool res1 = p1.LoadInput();
+		p1.PrintData();
 
-	// p2 data for solver 2
-	MathClass p2;
-	bool res2 = p2.LoadInput();
-	p2.PrintData();
-	cout << endl << "Solver, received: " << argc << " arguments\n";
+		cout << endl << "Solver, received: " << argc << " arguments\n";
 
-	// Solve method2
-	BaseSolver* bs2 = new Method2Solver();
-	bs2->Init(&p2);
-	bs2->Solve();
-	delete bs2;
+		double* Multi_VecCheck_res;
+		Multi_MatrixWithVector(p1.probSize, p1.M, p1.b, Multi_VecCheck_res);
 
-	//int x; cin >> x;
+		//Solve method1
+		BaseSolver * bs1 = new Method1Solver ();
+		bs1->Init(&p1);
+		bs1->Solve();
+		delete bs1;
+	};
+
+	//solver 2
+	if (p2flag) {
+		// p2 data for solver 2
+		MathClass p2;
+		bool res2 = p2.LoadInput();
+		p2.PrintData();
+		cout << endl << "Solver, received: " << argc << " arguments\n";
+
+		// Solve method2
+		BaseSolver* bs2 = new Method2Solver();
+		bs2->Init(&p2);
+		bs2->Solve();
+		delete bs2;
+	};
 }
