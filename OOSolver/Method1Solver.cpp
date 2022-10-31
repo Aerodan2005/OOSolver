@@ -80,16 +80,6 @@ void Method1Solver::GetColumn(double* mat, int size, int i, double*& vec)
 		vec[j] = GetCellij(mat, size, j, i);
 }
 
-void Method1Solver::DisplayResult(double* vec, int size)
-{
-	cout << "The result is" << endl;
-	for (int i = 0; i < size; i++)
-	{
-		cout << vec[i] << endl;
-	}
-	cout << endl;
-}
-
 bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 {
 	// This function performs Gram-Schmidt process

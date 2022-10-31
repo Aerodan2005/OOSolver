@@ -6,6 +6,16 @@ bool isSingular(double* matrix, int n)
 	return CalcDeterminant(matrix, n) == 0;
 }
 
+void DisplayResult(double* vec, int size)
+{
+	cout << "The result is" << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cout << vec[i] << endl;
+	}
+	cout << endl;
+}
+
 double CalcDeterminant(double* matrix, int n)
 // This function calculates the determinant of a square matrix using recursion  
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseSolver.h"
+#include "General_Utils.h"
 #include <iostream>
 
 class Method1Solver : public BaseSolver
@@ -18,7 +19,6 @@ public:
 	void GetRow(double* mat, int size, int i, double*& vec);
 	void GetColumn(double* mat, int size, int i, double*& vec);
 	void VecNorm(double* vec, int size, double*& result);
-	void DisplayResult(double* vec, int size);
 	bool Solve() override
 	{
 		double* result = nullptr;
