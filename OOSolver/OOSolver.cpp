@@ -17,13 +17,15 @@
 #include "BaseSolver.h"
 #include "Method1Solver.h"
 #include "Method2Solver.h"
+#include "Method3Solver.h"
 #include "MathClass.h"
 #include <cmath>
 using namespace std;
 int main(int argc, char** argv)
 {	
 	bool p1flag = false;
-	bool p2flag = true;
+	bool p2flag = false;
+	bool p3flag = true;
 
 	// solver 1
 	if (p1flag){
@@ -55,4 +57,21 @@ int main(int argc, char** argv)
 		bs2->Solve();
 		delete bs2;
 	};
+
+	// solver 3
+	if (p3flag) {
+		//p1 data for solver 3
+		MathClass p3;
+		bool res1 = p3.LoadInput();
+		p3.PrintData();
+
+		cout << endl << "Solver, received: " << argc << " arguments\n";
+
+		//Solve method1
+		BaseSolver* bs3 = new Method3Solver();
+		bs3->Init(&p3);
+		bs3->Solve();
+		delete bs3;
+	};
+
 }

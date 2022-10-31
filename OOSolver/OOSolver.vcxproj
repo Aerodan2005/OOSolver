@@ -131,6 +131,7 @@
     <ClCompile Include="MathClass.cpp" />
     <ClCompile Include="Method1Solver.cpp" />
     <ClCompile Include="Method2Solver.cpp" />
+    <ClCompile Include="Method3Solver.cpp" />
     <ClCompile Include="OOSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="MathClass.h" />
     <ClInclude Include="Method1Solver.h" />
     <ClInclude Include="Method2Solver.h" />
+    <ClInclude Include="Method3Solver.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
