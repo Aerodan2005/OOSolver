@@ -20,7 +20,7 @@ double CalcDeterminant(double* matrix, int n)
 // This function calculates the determinant of a square matrix using recursion  
 {
 	double det = 0;
-	double submatrix[10]; // 10 is the limit of the dimension size
+	double submatrix[100]; // 10 is the limit of the dimension size
 	if (n == 2)
 		return ((matrix[0] * matrix[3]) - (matrix[1] * matrix[2]));
 	else {
@@ -98,3 +98,15 @@ bool Multi_MatrixWithVector(int size, double* mat, double* vec, double*& result)
 	}*/
 	return 0;
 };
+
+void printMatrix(int size, double* mat) {
+	for (int i = 0; i < size; i++)
+	{
+		cout << "|";
+		for (int j = 0; j < size; j++)
+		{
+			cout << mat[i * size + j] << " ";
+		}
+		cout << "|\n";
+	}
+}

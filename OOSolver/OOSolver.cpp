@@ -38,6 +38,7 @@ int main(int argc, char** argv)
 		BaseSolver * bs1 = new Method1Solver ();
 		bs1->Init(&p1);
 		bs1->Solve();
+		
 		delete bs1;
 	};
 
@@ -54,5 +55,6 @@ int main(int argc, char** argv)
 		bs2->Init(&p2);
 		bs2->Solve();
 		delete bs2;
+		
 	};
 }

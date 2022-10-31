@@ -12,11 +12,12 @@ public:
 	bool Solve()override{
 		//int a = mc->probSize;
 		std::cout << "In Method_2_Solver>>Solve: " << mc->probSize << "\n";
-		
+		solverProcedure();
 		return true;
 	}
-
 private:
 	bool solverProcedure();
+	void partialPivoting(int S, double*& M, double*& B);
+	void sumRow(int s, double*& M, double*& B, int row, int column, int divisor);
 };
 
