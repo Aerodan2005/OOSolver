@@ -5,7 +5,7 @@
 
 class Method1Solver : public BaseSolver
 {
-	MathClass* mc;
+	MathClass* mc = 0;
 public:
 	void Init(MathClass* mc) override {
 		this->mc = mc;

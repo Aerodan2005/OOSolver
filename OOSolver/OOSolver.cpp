@@ -23,6 +23,21 @@
 using namespace std;
 int main(int argc, char** argv)
 {
+	MathClass p0;
+	bool res1 = p0.LoadInput();
+	p0.PrintData();
+	if (p0.singular)
+	{
+		cout << "Matrix is singular";
+		return 0;
+	}
+
+	if (p0.zeroVector)
+	{
+		cout << "Vector is singular";
+		return 0;
+	}
+
 	bool p1flag = true;
 	bool p2flag = false;
 	bool p3flag = true;
@@ -32,9 +47,9 @@ int main(int argc, char** argv)
 		//p1 data for solver 1
 		MathClass p1;
 		bool res1 = p1.LoadInput();
-		p1.PrintData();
+		//p1.PrintData();
 
-		cout << endl << "Solver, received: " << argc << " arguments\n";
+		cout << endl << "Solver1 (QR), received: " << argc << " arguments\n";
 
 		//Solve method1
 		BaseSolver* bs1 = new Method1Solver();
@@ -50,7 +65,7 @@ int main(int argc, char** argv)
 		MathClass p2;
 		bool res2 = p2.LoadInput();
 		p2.PrintData();
-		cout << endl << "Solver, received: " << argc << " arguments\n";
+		cout << endl << "Solver2 (LU), received: " << argc << " arguments\n";
 
 		// Solve method2
 		BaseSolver* bs2 = new Method2Solver();
@@ -64,9 +79,9 @@ int main(int argc, char** argv)
 		//p1 data for solver 3
 		MathClass p3;
 		bool res1 = p3.LoadInput();
-		p3.PrintData();
+		//p3.PrintData();
 
-		cout << endl << "Solver, received: " << argc << " arguments\n";
+		cout << endl << "Solver3 (Cramer), received: " << argc << " arguments\n";
 
 		//Solve method1
 		BaseSolver* bs3 = new Method3Solver();

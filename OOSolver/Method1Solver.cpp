@@ -102,7 +102,6 @@ void Method1Solver::FlipColumnSigns(double*& mat, int size, int col)
 	}
 }
 
-
 bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 {
 	// This function performs Gram-Schmidt process
@@ -113,7 +112,6 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 	Q = new double[size * size] {0};
 	R = new double[size * size] {0};
 	double* e_mat = new double[size * size] {0};
-	double* sumvec = new double[size] {0};
 	double* a_vec = new double[size] {0};
 	double* e_vec = new double[size] {0};
 	double* u_vec = new double[size] {0};
@@ -147,10 +145,6 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 
 	// Flip first column signs
 	FlipColumnSigns(Q, size, 0);
-	//for (int i = 0; i < size; i++)
-	//{
-	//	Q[i] = -Q[i];
-	//}
 
 	// Calculate matrix R
 	for (int col = 0; col < size; col++)
@@ -166,6 +160,6 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 	FlipColumnSigns(R, size, 0);
 	TransposeMat(R, size, R);
 
-	delete[] e_mat, sumvec, a_vec, e_vec, u_vec;
+	delete[] e_mat, a_vec, e_vec, u_vec;
 	return 0;
 }

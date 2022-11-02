@@ -5,14 +5,11 @@
 
 class Method3Solver : public BaseSolver
 {
-	MathClass* mc;
+	MathClass* mc = 0;
 public:
 	void Init(MathClass* mc) override {
 		this->mc = mc;
 	}
-
-	void ReplaceColumn(double* mat, double* vec, int col, int size, double*& result);
-	void CopyMatrix(double* mat1, int size, double*& result);
 
 	bool Solve() override
 	{
@@ -32,5 +29,9 @@ public:
 		DisplayResult(result, mc->probSize);
 		return true;
 	}
+
+private:
+	void ReplaceColumn(double* mat, double* vec, int col, int size, double*& result);
+	void CopyMatrix(double* mat1, int size, double*& result);
 };
 
