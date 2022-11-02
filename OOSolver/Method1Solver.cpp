@@ -4,8 +4,8 @@ bool Method1Solver::BackSub(int size, double* mat, double* vec, double*& result)
 // This function solves mat*x = vec
 // where mat is an upper triangular matrix
 {
-	result = new double[size];
-	double sum;
+	result = new double[size] {0};
+	double sum = 0;
 	for (int i = 0; i < size; i++)
 		result[i] = 0;
 
@@ -22,24 +22,33 @@ bool Method1Solver::BackSub(int size, double* mat, double* vec, double*& result)
 }
 
 double Method1Solver::DotCalc(double* vec1, double* vec2, int size)
+// This function returns to dot product of vectors "vec1" and "vec2"
 {
 	double sum = 0;
 	for (int i = 0; i < size; i++)
+	{
 		sum += vec1[i] * vec2[i];
+	}
 	return sum;
 }
 
 void Method1Solver::VecNorm(double* vec, int size, double*& result)
+// This function stores the normalized vector "vec" in "result"
 {
 	double sum = 0;
 	for (int i = 0; i < size; i++)
+	{
 		sum += (vec[i]) * (vec[i]);
+	}
 	sum = pow(sum, 0.5);
 	for (int i = 0; i < size; i++)
+	{
 		result[i] = vec[i] / sum;
+	}
 }
 
 bool Method1Solver::TransposeMat(double* mat, int size, double*& result)
+// This function transpose matrix "mat" and stores it in matrix "result"
 {
 	result = new double[size * size] {0};
 	if (size == 1)
@@ -59,11 +68,13 @@ bool Method1Solver::TransposeMat(double* mat, int size, double*& result)
 }
 
 double Method1Solver::GetCellij(double* mat, int size, int row, int col)
+// This function returns the value of mat[i,j]
 {
 	return (mat[col + size * row]);
 }
 
 void Method1Solver::GetRow(double* mat, int size, int i, double*& vec)
+// This function stores row "i" of matrix "mat" in "vec"
 {
 	vec = new double[size] {0};
 	for (int j = 0; j < size; j++)
@@ -73,6 +84,7 @@ void Method1Solver::GetRow(double* mat, int size, int i, double*& vec)
 }
 
 void Method1Solver::GetColumn(double* mat, int size, int i, double*& vec)
+// This function stores column "i" of matrix "mat" in "vec"
 {
 	vec = new double[size] {0};
 	for (int j = 0; j < size; j++)
@@ -80,6 +92,16 @@ void Method1Solver::GetColumn(double* mat, int size, int i, double*& vec)
 		vec[j] = GetCellij(mat, size, j, i);
 	}
 }
+
+void Method1Solver::FlipColumnSigns(double*& mat, int size, int col)
+// This function flips the signs of column "col" of matrix "mat"
+{
+	for (int i = 0; i < size; i++)
+	{
+		mat[i + size * col] = -mat[i + size * col];
+	}
+}
+
 
 bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 {
@@ -90,8 +112,7 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 
 	Q = new double[size * size] {0};
 	R = new double[size * size] {0};
-	double* e = new double[size * size] {0};
-	double* u = new double[size * size] {0};
+	double* e_mat = new double[size * size] {0};
 	double* sumvec = new double[size] {0};
 	double* a_vec = new double[size] {0};
 	double* e_vec = new double[size] {0};
@@ -106,7 +127,7 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 
 		for (int i = 0; i < col; i++)
 		{
-			GetColumn(e, size, i, e_vec);
+			GetColumn(e_mat, size, i, e_vec);
 			dot_prod = DotCalc(a_vec, e_vec, size);
 			for (int k = 0; k < size; k++)
 			{
@@ -118,17 +139,18 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 		VecNorm(u_vec, size, e_vec);
 		for (int k = 0; k < size; k++)
 		{
-			e[col + size * k] = e_vec[k];
+			e_mat[col + size * k] = e_vec[k];
 		}
 	}
 	// Save transposed e matrix to Q
-	TransposeMat(e, size, Q);
+	TransposeMat(e_mat, size, Q);
 
 	// Flip first column signs
-	for (int i = 0; i < size; i++)
-	{
-		Q[i] = -Q[i];
-	}
+	FlipColumnSigns(Q, size, 0);
+	//for (int i = 0; i < size; i++)
+	//{
+	//	Q[i] = -Q[i];
+	//}
 
 	// Calculate matrix R
 	for (int col = 0; col < size; col++)
@@ -136,20 +158,14 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 		for (int row = 0; row <= col; row++)
 		{
 			GetColumn(A, size, col, a_vec);
-			GetColumn(e, size, row, e_vec);
+			GetColumn(e_mat, size, row, e_vec);
 			R[col + size * row] = DotCalc(a_vec, e_vec, size);
 		}
 	}
 
+	FlipColumnSigns(R, size, 0);
 	TransposeMat(R, size, R);
 
-	// flip first row signs
-	for (int i = 0; i < size; i++)
-	{
-		R[size * i] = -R[size * i];
-	}
-
-	delete[] e, u, sumvec, a_vec, e_vec, u_vec;
+	delete[] e_mat, sumvec, a_vec, e_vec, u_vec;
 	return 0;
 }
-

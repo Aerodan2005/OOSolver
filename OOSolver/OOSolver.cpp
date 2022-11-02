@@ -22,13 +22,13 @@
 #include <cmath>
 using namespace std;
 int main(int argc, char** argv)
-{	
+{
 	bool p1flag = true;
 	bool p2flag = false;
 	bool p3flag = true;
 
 	// solver 1
-	if (p1flag){
+	if (p1flag) {
 		//p1 data for solver 1
 		MathClass p1;
 		bool res1 = p1.LoadInput();
@@ -37,10 +37,10 @@ int main(int argc, char** argv)
 		cout << endl << "Solver, received: " << argc << " arguments\n";
 
 		//Solve method1
-		BaseSolver * bs1 = new Method1Solver ();
+		BaseSolver* bs1 = new Method1Solver();
 		bs1->Init(&p1);
 		bs1->Solve();
-		
+
 		delete bs1;
 	};
 
@@ -57,7 +57,6 @@ int main(int argc, char** argv)
 		bs2->Init(&p2);
 		bs2->Solve();
 		delete bs2;
-		
 	};
 
 	// solver 3
@@ -75,5 +74,4 @@ int main(int argc, char** argv)
 		bs3->Solve();
 		delete bs3;
 	};
-
 }

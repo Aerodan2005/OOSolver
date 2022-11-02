@@ -48,7 +48,6 @@ bool MathClass::LoadInput()
 
 	singular = isSingular(M, probSize);
 	zeroVector = isZeroVector(b, probSize);
-	//determinant = CalcDeterminant(M, probSize);
 
 	return true;
 }

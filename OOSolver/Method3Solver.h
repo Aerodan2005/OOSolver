@@ -11,15 +11,6 @@ public:
 		this->mc = mc;
 	}
 
-	//bool BackSub(int size, double* mat, double* vec, double*& result);
-	//bool QRdecomp(int size, double* mat, double*& Q, double*& R);
-	//double DotCalc(double* vec1, double* vec2, int size);
-	//bool TransposeMat(double* mat, int size, double*& result);
-	//double GetCellij(double* mat, int size, int i, int j);
-	//void GetRow(double* mat, int size, int i, double*& vec);
-	//void GetColumn(double* mat, int size, int i, double*& vec);
-	//void VecNorm(double* vec, int size, double*& result);
-
 	void ReplaceColumn(double* mat, double* vec, int col, int size, double*& result);
 	void CopyMatrix(double* mat1, int size, double*& result);
 
