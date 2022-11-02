@@ -19,30 +19,33 @@ void DisplayResult(double* vec, int size)
 double CalcDeterminant(double* matrix, int n)
 // This function calculates the determinant of a square matrix of size n*n  
 {
-	double det = 0;
-	double* submatrix = new double[n * n];
+	if (n == 1)
+		return matrix[0];
+
 	if (n == 2)
 		return ((matrix[0] * matrix[3]) - (matrix[1] * matrix[2]));
-	else {
-		for (int x = 0; x < n; x++) {
-			int subi = 0;
-			int subj = 0;
-			for (int i = 1; i < n; i++) {
-				for (int j = 0; j < n; j++) {
-					if (j == x)
-						continue;
-					submatrix[subi * (n - 1) + subj] = matrix[i * n + j];
-					subj++;
-				}
-				if (subj == n - 1)
-				{
-					subi++;
-					subj = 0;
-				}
+
+	double det = 0;
+	double* submatrix = new double[n * n];
+	for (int x = 0; x < n; x++) {
+		int subi = 0;
+		int subj = 0;
+		for (int i = 1; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (j == x)
+					continue;
+				submatrix[subi * (n - 1) + subj] = matrix[i * n + j];
+				subj++;
 			}
-			det += (pow(-1, x) * matrix[x] * CalcDeterminant(submatrix, n - 1));
+			if (subj == n - 1)
+			{
+				subi++;
+				subj = 0;
+			}
 		}
+		det += (pow(-1, x) * matrix[x] * CalcDeterminant(submatrix, n - 1));
 	}
+
 	delete[] submatrix;
 	return det;
 }

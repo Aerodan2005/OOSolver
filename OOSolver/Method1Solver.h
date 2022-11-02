@@ -11,14 +11,6 @@ public:
 		this->mc = mc;
 	}
 
-	bool BackSub(int size, double* mat, double* vec, double*& result);
-	bool QRdecomp(int size, double* mat, double*& Q, double*& R);
-	double DotCalc(double* vec1, double* vec2, int size);
-	bool TransposeMat(double* mat, int size, double*& result);
-	double GetCellij(double* mat, int size, int i, int j);
-	void GetRow(double* mat, int size, int i, double*& vec);
-	void GetColumn(double* mat, int size, int i, double*& vec);
-	void VecNorm(double* vec, int size, double*& result);
 	bool Solve() override
 	{
 		double* result = nullptr;
@@ -31,5 +23,15 @@ public:
 		DisplayResult(result2, mc->probSize);
 		return true;
 	}
+
+private:
+	bool BackSub(int size, double* mat, double* vec, double*& result);
+	bool QRdecomp(int size, double* mat, double*& Q, double*& R);
+	double DotCalc(double* vec1, double* vec2, int size);
+	bool TransposeMat(double* mat, int size, double*& result);
+	double GetCellij(double* mat, int size, int i, int j);
+	void GetRow(double* mat, int size, int i, double*& vec);
+	void GetColumn(double* mat, int size, int i, double*& vec);
+	void VecNorm(double* vec, int size, double*& result);
 };
 

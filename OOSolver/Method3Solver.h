@@ -30,12 +30,6 @@ public:
 		double* mat1 = new double [mc->probSize * mc->probSize] {0};
 		double* mat2 = new double [mc->probSize * mc->probSize] {0};
 
-		//double* Q;
-		//double* R;
-		//QRdecomp(mc->probSize, mc->M, Q, R);
-		//Multi_MatrixWithVector(mc->probSize, Q, mc->b, result);
-		//BackSub(mc->probSize, R, result, result2);
-
 		det = CalcDeterminant(mc->M, mc->probSize);
 		for (int i = 0; i < mc->probSize; i++)
 		{
@@ -43,7 +37,6 @@ public:
 			ReplaceColumn(mat1, mc->b, i, mc->probSize, mat2);
 			result[i] = CalcDeterminant(mat2, mc->probSize) / det;
 		}
-
 
 		DisplayResult(result, mc->probSize);
 		return true;
