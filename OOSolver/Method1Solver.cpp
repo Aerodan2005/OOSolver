@@ -52,10 +52,7 @@ bool Method1Solver::TransposeMat(double* mat, int size, double*& result)
 	{
 		for (int j = 0; j < size; j++)
 		{
-			if (i == j)
-				result[i + size * i] = GetCellij(mat, size, i, i);
-			else
-				result[i + size * j] = GetCellij(mat, size, i, j);
+			result[i + size * j] = GetCellij(mat, size, i, j);
 		}
 	}
 	return 0;
@@ -70,14 +67,18 @@ void Method1Solver::GetRow(double* mat, int size, int i, double*& vec)
 {
 	vec = new double[size] {0};
 	for (int j = 0; j < size; j++)
+	{
 		vec[j] = GetCellij(mat, size, i, j);
+	}
 }
 
 void Method1Solver::GetColumn(double* mat, int size, int i, double*& vec)
 {
 	vec = new double[size] {0};
 	for (int j = 0; j < size; j++)
+	{
 		vec[j] = GetCellij(mat, size, j, i);
+	}
 }
 
 bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
@@ -89,7 +90,6 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 
 	Q = new double[size * size] {0};
 	R = new double[size * size] {0};
-
 	double* e = new double[size * size] {0};
 	double* u = new double[size * size] {0};
 	double* sumvec = new double[size] {0};
@@ -121,15 +121,16 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 			e[col + size * k] = e_vec[k];
 		}
 	}
-	// Save transposed e matrix to  Q
+	// Save transposed e matrix to Q
 	TransposeMat(e, size, Q);
 
+	// Flip first column signs
 	for (int i = 0; i < size; i++)
 	{
 		Q[i] = -Q[i];
 	}
 
-	// Calculating matrix R
+	// Calculate matrix R
 	for (int col = 0; col < size; col++)
 	{
 		for (int row = 0; row <= col; row++)
@@ -141,6 +142,8 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 	}
 
 	TransposeMat(R, size, R);
+
+	// flip first row signs
 	for (int i = 0; i < size; i++)
 	{
 		R[size * i] = -R[size * i];

@@ -23,7 +23,7 @@
 using namespace std;
 int main(int argc, char** argv)
 {	
-	bool p1flag = false;
+	bool p1flag = true;
 	bool p2flag = false;
 	bool p3flag = true;
 

@@ -2,7 +2,10 @@
 
 void Method3Solver::ReplaceColumn(double* mat, double* vec, int col, int size, double*& result)
 {
-
+	for (int i = 0; i < size * size; i++)
+		result[i] = mat[i];
+	for (int i = 0; i < size; i++)
+		result[col + size * i] = vec[i];
 }
 
 void Method3Solver::CopyMatrix(double* mat1, int size, double*& result)

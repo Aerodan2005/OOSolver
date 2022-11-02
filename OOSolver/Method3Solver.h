@@ -41,7 +41,7 @@ public:
 		{
 			CopyMatrix(mc->M, mc->probSize, mat1);
 			ReplaceColumn(mat1, mc->b, i, mc->probSize, mat2);
-			result[i] = CalcDeterminant(mat2, mc->probSize);
+			result[i] = CalcDeterminant(mat2, mc->probSize) / det;
 		}
 
 

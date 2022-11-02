@@ -17,10 +17,10 @@ void DisplayResult(double* vec, int size)
 }
 
 double CalcDeterminant(double* matrix, int n)
-// This function calculates the determinant of a square matrix using recursion  
+// This function calculates the determinant of a square matrix of size n*n  
 {
 	double det = 0;
-	double submatrix[100]; // 10 is the limit of the dimension size
+	double* submatrix = new double[n * n];
 	if (n == 2)
 		return ((matrix[0] * matrix[3]) - (matrix[1] * matrix[2]));
 	else {
@@ -40,16 +40,19 @@ double CalcDeterminant(double* matrix, int n)
 					subj = 0;
 				}
 			}
-			det = det + (pow(-1, x) * matrix[x] * CalcDeterminant(submatrix, n - 1));
+			det += (pow(-1, x) * matrix[x] * CalcDeterminant(submatrix, n - 1));
 		}
 	}
+	delete[] submatrix;
 	return det;
 }
 
 bool isZeroVector(double* b, int n)
 {
 	for (int i = 0; i < n; i++)
+	{
 		if (b[i] != 0) return false;
+	}
 	return true;
 }
 
@@ -62,40 +65,9 @@ bool Multi_MatrixWithVector(int size, double* mat, double* vec, double*& result)
 		result[i] = 0;
 		for (int j = 0; j < size; j++)
 		{
-			//cout << mat[i*size+j] << "_";
-			result[i] = result[i] + (mat[i * size + j] * vec[j]);
+			result[i] += (mat[i * size + j] * vec[j]);
 		}
-		//cout << result[i];
-		//cout << "\n";
 	}
-
-	/*for (int i = 0; i < size; i++)
-	{
-		cout << "|";
-		for (int j = 0; j < size; j++)
-		{
-			cout << mat[i * size + j] << " ";
-		}
-		cout << "| ";
-		if (i == 1)
-		{
-			cout << "*";
-		}
-		else
-		{
-			cout << " ";
-		}
-		cout << " |" << vec[i] << "|";
-		if (i == 1)
-		{
-			cout << "=";
-		}
-		else
-		{
-			cout << " ";
-		}
-		cout << " |" << result[i] << "|" << "\n";
-	}*/
 	return 0;
 };
 
