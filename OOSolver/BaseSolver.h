@@ -4,9 +4,17 @@
 
 class BaseSolver
 {
-	double* solution = nullptr;
 public:
+	double* solution = nullptr;
+	const char* solver_name = nullptr;
+
 	virtual void Init(MathClass* mc) = 0;
 	virtual bool Solve() = 0;
+
+	void RunSolver(MathClass* mc)
+	{
+		Init(mc);
+		Solve();
+	}
 };
 

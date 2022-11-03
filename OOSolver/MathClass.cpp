@@ -46,10 +46,18 @@ bool MathClass::LoadInput()
 
 	inFile.close();
 
-	singular = isSingular(M, probSize);
-	zeroVector = isZeroVector(b, probSize);
-
 	return true;
+}
+
+bool MathClass::isInputValid()
+{
+	singular = isSingular(M, probSize);
+	if (singular) cout << "Matrix is singular" << endl;
+
+	zeroVector = isZeroVector(b, probSize);
+	if (zeroVector) cout << "Vector is all zeros" << endl;
+
+	return !(singular || zeroVector);
 }
 
 void MathClass::PrintMatrix()
@@ -69,10 +77,8 @@ void MathClass::PrintVector(double* v, int n)
 
 void MathClass::PrintData()
 {
-	cout << "Given matrix:" << endl;
+	cout << endl << "Given matrix:" << endl;
 	PrintMatrix();
-	cout << "Given vector:" << endl;
+	cout << endl << "Given vector:" << endl;
 	PrintVector(b, probSize);
-	cout << "Is singular matrix ? " << singular << "\n";
-	cout << "Is zeros vector? " << zeroVector << "\n";
 };

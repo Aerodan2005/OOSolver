@@ -12,33 +12,32 @@ void DisplayResult(double* vec, int size)
 {
 	cout << "The result is" << endl;
 	for (int i = 0; i < size; i++)
-	{
 		cout << vec[i] << endl;
-	}
 	cout << endl;
 }
 
 double CalcDeterminant(double* mat, int n)
 // This function calculates the determinant of a square matrix "mat" of size n*n  
 {
-	if (n == 1)
-		return mat[0];
+	if (n == 1) return mat[0];
+	if (n == 2) return ((mat[0] * mat[3]) - (mat[1] * mat[2]));
 
-	if (n == 2)
-		return ((mat[0] * mat[3]) - (mat[1] * mat[2]));
-
-	double det = 0;
 	double* submatrix = new double[n * n];
-	for (int x = 0; x < n; x++) {
-		int subi = 0;
-		int subj = 0;
-		for (int i = 1; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				if (j == x)
-					continue;
+	double det = 0;
+	int subi = 0, subj = 0;
+	for (int x = 0; x < n; x++) 
+	{
+		subi = 0;
+		subj = 0;
+		for (int i = 1; i < n; i++) 
+		{
+			for (int j = 0; j < n; j++) 
+			{
+				if (j == x) continue;
 				submatrix[subi * (n - 1) + subj] = mat[i * n + j];
 				subj++;
 			}
+
 			if (subj == n - 1)
 			{
 				subi++;
@@ -56,9 +55,7 @@ bool isZeroVector(double* b, int n)
 // This function returns TRUE if all values of vector "b" are zeros, otherwise FALSE 
 {
 	for (int i = 0; i < n; i++)
-	{
 		if (b[i] != 0) return false;
-	}
 	return true;
 }
 
@@ -72,9 +69,7 @@ bool Multi_MatrixWithVector(int size, double* mat, double* vec, double*& result)
 	{
 		result[i] = 0;
 		for (int j = 0; j < size; j++)
-		{
 			result[i] += (mat[i * size + j] * vec[j]);
-		}
 	}
 	return 0;
 };
@@ -86,9 +81,7 @@ void printMatrix(int size, double* mat)
 	{
 		cout << "|";
 		for (int j = 0; j < size; j++)
-		{
 			cout << mat[i * size + j] << " ";
-		}
 		cout << "|\n";
 	}
 }

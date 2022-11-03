@@ -6,27 +6,33 @@
 class Method3Solver : public BaseSolver
 {
 	MathClass* mc = 0;
-public:
-	void Init(MathClass* mc) override {
+
+public:	
+	void Init(MathClass* mc) override
+	{
 		this->mc = mc;
+		solver_name = "Cramer Solver";
+		cout << endl << solver_name << endl;
 	}
 
 	bool Solve() override
 	{
-		double* result = new double [mc->probSize] {0};
-		double det = 0;
+		double* solution = new double [mc->probSize] {0};
 		double* mat1 = new double [mc->probSize * mc->probSize] {0};
 		double* mat2 = new double [mc->probSize * mc->probSize] {0};
+		double det = 0;
 
 		det = CalcDeterminant(mc->M, mc->probSize);
 		for (int i = 0; i < mc->probSize; i++)
 		{
 			CopyMatrix(mc->M, mc->probSize, mat1);
 			ReplaceColumn(mat1, mc->b, i, mc->probSize, mat2);
-			result[i] = CalcDeterminant(mat2, mc->probSize) / det;
+			solution[i] = CalcDeterminant(mat2, mc->probSize) / det;
 		}
 
-		DisplayResult(result, mc->probSize);
+		DisplayResult(solution, mc->probSize);
+		delete[] mat1;
+		delete[] mat2;
 		return true;
 	}
 

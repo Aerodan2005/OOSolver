@@ -26,67 +26,40 @@ int main(int argc, char** argv)
 	MathClass p0;
 	bool res1 = p0.LoadInput();
 	p0.PrintData();
-	if (p0.singular)
-	{
-		cout << "Matrix is singular";
-		return 0;
-	}
 
-	if (p0.zeroVector)
-	{
-		cout << "Vector is singular";
+	if (!p0.isInputValid())
 		return 0;
-	}
 
-	bool p1flag = true;
-	bool p2flag = false;
-	bool p3flag = true;
+	bool solver1_flag = true;
+	bool solver2_flag = false;
+	bool solver3_flag = true;
 
 	// solver 1
-	if (p1flag) {
-		//p1 data for solver 1
-		MathClass p1;
-		bool res1 = p1.LoadInput();
-		//p1.PrintData();
-
-		cout << endl << "Solver1 (QR), received: " << argc << " arguments\n";
-
-		//Solve method1
+	if (solver1_flag) {
 		BaseSolver* bs1 = new Method1Solver();
-		bs1->Init(&p1);
-		bs1->Solve();
-
+		bs1->RunSolver(&p0);
 		delete bs1;
 	};
 
-	//solver 2
-	if (p2flag) {
-		// p2 data for solver 2
-		MathClass p2;
-		bool res2 = p2.LoadInput();
-		p2.PrintData();
-		cout << endl << "Solver2 (LU), received: " << argc << " arguments\n";
+	////solver 2
+	//if (solver2_flag) {
+	//	// p2 data for solver 2
+	//	MathClass p2;
+	//	bool res2 = p2.LoadInput();
+	//	p2.PrintData();
+	//	cout << endl << "Solver2 (LU), received: " << argc << " arguments\n";
 
-		// Solve method2
-		BaseSolver* bs2 = new Method2Solver();
-		bs2->Init(&p2);
-		bs2->Solve();
-		delete bs2;
-	};
+	//	// Solve method2
+	//	BaseSolver* bs2 = new Method2Solver();
+	//	bs2->Init(&p2);
+	//	bs2->Solve();
+	//	delete bs2;
+	//};
 
 	// solver 3
-	if (p3flag) {
-		//p1 data for solver 3
-		MathClass p3;
-		bool res1 = p3.LoadInput();
-		//p3.PrintData();
-
-		cout << endl << "Solver3 (Cramer), received: " << argc << " arguments\n";
-
-		//Solve method1
+	if (solver3_flag) {
 		BaseSolver* bs3 = new Method3Solver();
-		bs3->Init(&p3);
-		bs3->Solve();
+		bs3->RunSolver(&p0);
 		delete bs3;
 	};
 }
