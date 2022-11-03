@@ -10,31 +10,30 @@ bool Method2Solver::solverProcedure() {
 	int S = mc->probSize; // this is a local var for matrix size
 	double*& M = mc->M;  // this is a local var for matrix 
 	double*& b = mc->b; //his is a local var for vector
+	
 	partialPivoting(S,M,b);
+	calcResult(S, M, b);
+
+
 	printMatrix(S,M);
+	printVec(S,b);
 
 	return true;
 }
 
-void Method2Solver::partialPivoting(int s, double*& M, double*& B) {
-	double divisor ;	//the divider number for sum the row
-	int rowCounter=1;	//the row for forword the next level without come back 
-	for (int column = 0; column < s; column++) {		//the tecnic is fix column by column
-		for (int row = rowCounter; row < s; row++) {	// and get inside to relevant row
-			if (column<row )  {
-				divisor = M[row * s + column] /(M[column * s + column]);
-				cout << divisor << "\n";
-				sumRow(s, M, B,row,column, divisor);//clac row function
-
-				 
-				//M[row * s + column] = -divisor * M[rowCounter*s+column];
-				//cout << "(" << row << "," << column << ")="<< M[row* s + column]<<"\n";
+void Method2Solver::partialPivoting(int s, double*& M, double*& b) {
+	double divisor ;	//the divider number for sum the row	
+	for (int row = 1; row < s; row++) {	//the tecnic is fix column by column
+		for (int rowCounter = row; rowCounter < s; rowCounter++) {	// and get inside to relevant row
+			divisor = M[(rowCounter) * s + (row-1)] / (M[(row - 1) * s + (row - 1)]);
+			for (int column = 0; column < s; column++)	{
+				M[rowCounter * s + column] -= divisor * M[(row - 1) * s + column];
 			}
+			b[rowCounter] -= divisor*b[row - 1];
 		}
-		rowCounter++; //gump to start from the relevant row
 	}
 }
 
-void Method2Solver::sumRow(int s, double*& M, double*& B, int row, int column,int divisor) {
+void Method2Solver::calcResult(int s, double*& M, double*& b) {
 
 };
