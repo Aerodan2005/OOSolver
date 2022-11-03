@@ -1,9 +1,5 @@
 //  Gaussian Elimination solver
-#include <iostream>
 #include "Method2Solver.h"
-using namespace std;
-
-
 
 bool Method2Solver::solverProcedure() {
 	cout << "\nsolver Procedure start\n";
@@ -12,7 +8,7 @@ bool Method2Solver::solverProcedure() {
 	double*& b = mc->b; //his is a local var for vector
 	
 	partialPivoting(S,M,b);
-	calcResult(S, M, b);
+	calcPivot(S, M, b, solution);
 
 
 	printMatrix(S,M);
@@ -34,6 +30,28 @@ void Method2Solver::partialPivoting(int s, double*& M, double*& b) {
 	}
 }
 
-void Method2Solver::calcResult(int s, double*& M, double*& b) {
+void Method2Solver::calcPivot(int Size, double*& M, double*& b, double*& result) {
+
+	printMatrix(Size, M);
+	printVec(Size, b);
+	cout << "o";
+
+	result = new double[Size]{0};
+	double sum = 0;
+	for (int row = Size-1; row >=0; row--)	{
+		sum = 0;
+		for (int column = 0; column < Size; column++)
+		{
+			sum =+ 0 ;
+			result[row] = (1 / M[Size * row + column]) * (b[row] - sum);
+		}
+	}
+//	double*& result)
+//	// This function solves mat*x = vec
+//	// where mat is an upper triangular matrix
+//{
+//result = new double[size] {0};
+
+
 
 };

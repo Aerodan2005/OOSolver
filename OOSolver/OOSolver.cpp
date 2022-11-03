@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 		return 0;
 
 	bool solver1_flag = true;
-	bool solver2_flag = false;
+	bool solver2_flag = true;
 	bool solver3_flag = true;
 
 	// solver 1
@@ -41,20 +41,12 @@ int main(int argc, char** argv)
 		delete bs1;
 	};
 
-	////solver 2
-	//if (solver2_flag) {
-	//	// p2 data for solver 2
-	//	MathClass p2;
-	//	bool res2 = p2.LoadInput();
-	//	p2.PrintData();
-	//	cout << endl << "Solver2 (LU), received: " << argc << " arguments\n";
-
-	//	// Solve method2
-	//	BaseSolver* bs2 = new Method2Solver();
-	//	bs2->Init(&p2);
-	//	bs2->Solve();
-	//	delete bs2;
-	//};
+	//solver 2
+	if (solver2_flag) {
+		BaseSolver* bs2 = new Method2Solver();
+		bs2->RunSolver(&p0);
+		delete bs2;
+	};
 
 	// solver 3
 	if (solver3_flag) {

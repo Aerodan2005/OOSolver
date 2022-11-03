@@ -14,8 +14,7 @@ bool Method1Solver::BackSub(int size, double* mat, double* vec, double*& result)
 		sum = 0;
 		for (int j = i + 1; j < size; j++)
 			sum = sum + result[j] * mat[i + size * j];
-
-		result[i] = (1 / mat[size * i + i]) * (vec[i] - sum);
+			result[i] = (1 / mat[size * i + i]) * (vec[i] - sum);
 	}
 	return 0;
 }

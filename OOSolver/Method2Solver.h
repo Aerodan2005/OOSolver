@@ -1,14 +1,20 @@
 #pragma once
 #include "BaseSolver.h"
+#include "General_Utils.h"
 #include <iostream>
+using namespace std;
 
 class Method2Solver : public BaseSolver
 {
 	MathClass* mc;
 public:
-	void Init(MathClass* mc) override {
+	void Init(MathClass* mc) override
+	{
 		this->mc = mc;
+		solver_name = "LU Solver";
+		cout << endl << solver_name << endl;
 	}
+
 	bool Solve()override {
 		//int a = mc->probSize;
 		std::cout << "In Method_2_Solver>>Solve: " << mc->probSize << "\n";
@@ -18,5 +24,5 @@ public:
 private:
 	bool solverProcedure();
 	void partialPivoting(int S, double*& M, double*& b);
-	void calcResult(int s, double*& M, double*& b);
+	void calcPivot(int s, double*& M, double*& b, double*& result);
 };
