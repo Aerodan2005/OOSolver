@@ -85,3 +85,12 @@ void printMatrix(int size, double* mat)
 		cout << "|\n";
 	}
 }
+
+void printVec(int size, double* vec) {
+	for (int j = 0; j < size; j++)
+	{
+		cout << "|";
+		cout << vec[j] << " ";
+		cout << "|\n";
+	}
+};
