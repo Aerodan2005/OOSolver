@@ -100,7 +100,7 @@ bool Method1Solver::QRdecomp(int size, double* A, double*& Q, double*& R)
 	return 0;
 }
 
-void Method1Solver::Calculate_Q(int size, double* A, double*& Q, double*& e_mat)
+void Method1Solver::Calculate_e(int size, double* A, double*& e)
 {
 	double* a_vec = new double[size] {0};
 	double* e_vec = new double[size] {0};
@@ -114,7 +114,7 @@ void Method1Solver::Calculate_Q(int size, double* A, double*& Q, double*& e_mat)
 
 		for (int i = 0; i < col; i++)
 		{
-			GetColumn(e_mat, size, i, e_vec);
+			GetColumn(e, size, i, e_vec);
 			dot_prod = DotCalc(a_vec, e_vec, size);
 			for (int k = 0; k < size; k++)
 				u_vec[k] -= dot_prod * e_vec[k];
@@ -122,15 +122,19 @@ void Method1Solver::Calculate_Q(int size, double* A, double*& Q, double*& e_mat)
 
 		VecNorm(u_vec, size, e_vec);
 		for (int k = 0; k < size; k++)
-			e_mat[col + size * k] = e_vec[k];
+			e[col + size * k] = e_vec[k];
 	}
-
-	TransposeMat(e_mat, size, Q); // Save transposed e matrix to Q
-	FlipColumnSigns(Q, size, 0); // Flip first column signs
 
 	delete[] a_vec;
 	delete[] e_vec;
 	delete[] u_vec;
+}
+
+void Method1Solver::Calculate_Q(int size, double* A, double*& Q, double*& e)
+{
+	Calculate_e(size, A, e);
+	TransposeMat(e, size, Q); // Save transposed matrix e to Q
+	FlipColumnSigns(Q, size, 0); // Flip first column signs
 }
 
 void Method1Solver::Calculate_R(int size, double* A, double*& R, double*& e_mat)
