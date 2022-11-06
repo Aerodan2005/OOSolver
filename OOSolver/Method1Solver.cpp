@@ -33,12 +33,8 @@ double Method1Solver::DotCalc(double* vec1, double* vec2, int size)
 void Method1Solver::VecNorm(double* vec, int size, double*& result)
 // This function stores the normalized vector "vec" in "result"
 {
-	double sum = 0;
-	for (int i = 0; i < size; i++)
-		sum += (vec[i]) * (vec[i]);
-
+	double sum = DotCalc(vec, vec, size);
 	sum = pow(sum, 0.5);
-
 	for (int i = 0; i < size; i++)
 		result[i] = vec[i] / sum;
 }
@@ -46,7 +42,6 @@ void Method1Solver::VecNorm(double* vec, int size, double*& result)
 bool Method1Solver::TransposeMat(double* mat, int size, double*& result)
 // This function transpose matrix "mat" and stores it in matrix "result"
 {
-	//result = new double[size * size] {0};
 	if (size == 1)
 	{
 		result = mat;
@@ -69,7 +64,6 @@ double Method1Solver::GetCellij(double* mat, int size, int row, int col)
 void Method1Solver::GetRow(double* mat, int size, int i, double*& vec)
 // This function stores row "i" of matrix "mat" in "vec"
 {
-	//vec = new double[size] {0};
 	for (int j = 0; j < size; j++)
 		vec[j] = GetCellij(mat, size, i, j);
 }
@@ -77,7 +71,6 @@ void Method1Solver::GetRow(double* mat, int size, int i, double*& vec)
 void Method1Solver::GetColumn(double* mat, int size, int i, double*& vec)
 // This function stores column "i" of matrix "mat" in "vec"
 {
-	//vec = new double[size] {0};
 	for (int j = 0; j < size; j++)
 		vec[j] = GetCellij(mat, size, j, i);
 }
@@ -127,16 +120,14 @@ void Method1Solver::Calculate_Q(int size, double* A, double*& Q, double*& e_mat)
 				u_vec[k] -= dot_prod * e_vec[k];
 		}
 
-		// Save values to temp matrix e
 		VecNorm(u_vec, size, e_vec);
 		for (int k = 0; k < size; k++)
 			e_mat[col + size * k] = e_vec[k];
 	}
-	// Save transposed e matrix to Q
-	TransposeMat(e_mat, size, Q);
 
-	// Flip first column signs
-	FlipColumnSigns(Q, size, 0);
+	TransposeMat(e_mat, size, Q); // Save transposed e matrix to Q
+	FlipColumnSigns(Q, size, 0); // Flip first column signs
+
 	delete[] a_vec;
 	delete[] e_vec;
 	delete[] u_vec;
@@ -158,6 +149,7 @@ void Method1Solver::Calculate_R(int size, double* A, double*& R, double*& e_mat)
 	}
 	FlipColumnSigns(R, size, 0);
 	TransposeMat(R, size, R);
+
 	delete[] a_vec;
 	delete[] e_vec;
 }

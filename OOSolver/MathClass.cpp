@@ -21,35 +21,25 @@ bool MathClass::LoadInput()
 {
 	ifstream inFile;
 	inFile.open("Input.txt");
-	if (!inFile.is_open())
-	{
-		cout << "Unable to open file";
-		exit(EXIT_FAILURE);
-	}
+	if (!inFile.is_open()) exit(EXIT_FAILURE); // Unable to open file
 
 	inFile >> probSize;
-	bool isPositive = probSize > 0;
-	if (!isPositive)
-	{
-		cout << "Dimension size should be a positive integer.";
-		exit(EXIT_FAILURE);
-	}
+	bool isSizePositive = (probSize > 0);
+	if (!isSizePositive) exit(EXIT_FAILURE); // Dimension size should be a positive integer
 
 	M = new double[probSize * probSize];
-	b = new double[probSize];
-
 	for (int i = 0; i < probSize * probSize; i++)
 		inFile >> M[i];
 
+	b = new double[probSize];
 	for (int i = 0; i < probSize; i++)
 		inFile >> b[i];
 
 	inFile.close();
-
 	return true;
 }
 
-bool MathClass::isInputValid()
+bool MathClass::isInputInvalid()
 {
 	singular = isSingular(M, probSize);
 	if (singular) cout << "Matrix is singular" << endl;
@@ -57,7 +47,7 @@ bool MathClass::isInputValid()
 	zeroVector = isZeroVector(b, probSize);
 	if (zeroVector) cout << "Vector is all zeros" << endl;
 
-	return !(singular || zeroVector);
+	return (singular || zeroVector);
 }
 
 void MathClass::PrintMatrix()
