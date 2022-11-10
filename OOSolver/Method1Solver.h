@@ -43,6 +43,6 @@ private:
 	void FlipColumnSigns(double*& mat, int size, int col);
 	void Calculate_Q(int size, double* A, double*& Q, double*& e_mat);
 	void Calculate_R(int size, double* A, double*& R, double*& e_mat);
-
+	void Calculate_e(int size, double* A, double*& e_mat);
 };
 

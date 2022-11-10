@@ -18,21 +18,18 @@ public:
 	bool Solve() override
 	{
 		double* solution = new double [mc->probSize] {0};
-		double* mat1 = new double [mc->probSize * mc->probSize] {0};
-		double* mat2 = new double [mc->probSize * mc->probSize] {0};
-		double det = 0;
+		double* mat = new double [mc->probSize * mc->probSize] {0};
+		double det = CalcDeterminant(mc->M, mc->probSize);
 
-		det = CalcDeterminant(mc->M, mc->probSize);
 		for (int i = 0; i < mc->probSize; i++)
 		{
-			CopyMatrix(mc->M, mc->probSize, mat1);
-			ReplaceColumn(mat1, mc->b, i, mc->probSize, mat2);
-			solution[i] = CalcDeterminant(mat2, mc->probSize) / det;
+			CopyMatrix(mc->M, mc->probSize, mat);
+			ReplaceColumn(mat, mc->b, i, mc->probSize, mat);
+			solution[i] = CalcDeterminant(mat, mc->probSize) / det;
 		}
 
 		DisplayResult(solution, mc->probSize);
-		delete[] mat1;
-		delete[] mat2;
+		delete[] mat;
 		return true;
 	}
 

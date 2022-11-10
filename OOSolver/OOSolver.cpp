@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 	bool res1 = p0.LoadInput();
 	p0.PrintData();
 
-	if (!p0.isInputValid())
+	if (p0.isInputInvalid())
 		return 0;
 
 	bool solver1_flag = true;
