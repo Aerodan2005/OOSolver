@@ -11,8 +11,8 @@ bool Method2Solver::solverProcedure() {
 	calcPivot(S, M, b, solution);
 
 
-	printMatrix(S,M);
-	printVec(S,b);
+	//printMatrix(S,M);
+	//printVec(S,b);
 
 	return true;
 }
@@ -32,26 +32,21 @@ void Method2Solver::partialPivoting(int s, double*& M, double*& b) {
 
 void Method2Solver::calcPivot(int Size, double*& M, double*& b, double*& result) {
 
-	printMatrix(Size, M);
-	printVec(Size, b);
-	cout << "o";
-
 	result = new double[Size]{0};
 	double sum = 0;
 	for (int row = Size-1; row >=0; row--)	{
 		sum = 0;
-		for (int column = 0; column < Size; column++)
+		for (int column = row + 1; column < Size; column++)
 		{
-			sum =+ 0 ;
-			result[row] = (1 / M[Size * row + column]) * (b[row] - sum);
+			sum =+ result[column]*M[Size * row + column];
+			
 		}
+		result[row] = ((b[row] - sum) / M[Size * row + row]);
+	/*	cout << "\n";*/
 	}
-//	double*& result)
-//	// This function solves mat*x = vec
-//	// where mat is an upper triangular matrix
-//{
-//result = new double[size] {0};
-
-
-
+	cout << "-->\n";
+	for (int i = 0; i < Size; i++)
+	{
+		cout << result[i] << "\n";
+	}
 };

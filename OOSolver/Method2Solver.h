@@ -11,7 +11,7 @@ public:
 	void Init(MathClass* mc) override
 	{
 		this->mc = mc;
-		solver_name = "LU Solver";
+		solver_name = "Pivot Solver";
 		cout << endl << solver_name << endl;
 	}
 
