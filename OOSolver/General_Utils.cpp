@@ -13,7 +13,6 @@ void DisplayResult(double* vec, int size)
 	cout << "The result is" << endl;
 	for (int i = 0; i < size; i++)
 		cout << vec[i] << endl;
-	cout << endl;
 }
 
 double CalcDeterminant(double* mat, int n)
@@ -77,18 +76,15 @@ bool Multi_MatrixWithVector(int size, double* mat, double* vec, double*& result)
 void printMatrix(int size, double* mat) 
 // This function displays the matrix "mat"
 {
-	for (int i = 0; i < size; i++)
-	{
-		cout << "|";
+	for (int i = 0; i < size; i++)	{
 		for (int j = 0; j < size; j++)
 			cout << mat[i * size + j] << " ";
-		cout << "|\n";
+		cout << "\n";
 	}
 }
 
 void printVec(int size, double* vec) {
 	for (int j = 0; j < size; j++)
-	{
 		cout << vec[j] << "\n";
-	}
+
 };

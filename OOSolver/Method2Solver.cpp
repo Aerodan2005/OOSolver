@@ -3,16 +3,12 @@
 
 bool Method2Solver::solverProcedure() {
 	int S = mc->probSize; // this is a local var for matrix size
-	double*& M = mc->M;  // this is a local var for matrix 
-	double*& b = mc->b; //his is a local var for vector
+	double*& M = mc->M;  //  this is a local var for matrix 
+	double*& b = mc->b; //   this is a local var for vector
 	
 	partialPivoting(S,M,b);
 	calcPivot(S, M, b, solution);
-	showSolution(S, solution);
-
-	//printMatrix(S,M);
-	//printVec(S,b);
-
+	DisplayResult(solution, S);
 	return true;
 }
 
@@ -30,7 +26,6 @@ void Method2Solver::partialPivoting(int s, double*& M, double*& b) {
 }
 
 void Method2Solver::calcPivot(int Size, double*& M, double*& b, double*& result) {
-
 	result = new double[Size]{0};
 	double sum;
 	for (int row = Size-1; row >=0; row--)	{					// start from last row
@@ -40,9 +35,4 @@ void Method2Solver::calcPivot(int Size, double*& M, double*& b, double*& result)
 		}
 		result[row] = ((b[row] - sum) / M[Size * row + row]);
 	}
-};
-void Method2Solver::showSolution(int Size, double* vec){
-	cout << "The result is\n";
-	printVec(Size, vec);
-	delete solution;
 };

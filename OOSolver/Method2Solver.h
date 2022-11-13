@@ -23,5 +23,4 @@ private:
 	bool solverProcedure();
 	void partialPivoting(int S, double*& M, double*& b);
 	void calcPivot(int s, double*& M, double*& b, double*& result);
-	void showSolution(int Size, double* vec);
 };

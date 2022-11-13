@@ -1,4 +1,5 @@
 #include "MathClass.h"
+#include "General_Utils.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -50,25 +51,10 @@ bool MathClass::isInputInvalid()
 	return (singular || zeroVector);
 }
 
-void MathClass::PrintMatrix()
-{
-	for (int i = 0; i < probSize; i++)
-		for (int j = 0; j < probSize; j++)
-			// Prints ' ' if j != n-1 else prints '\n'         
-			cout << M[i * probSize + j] << " \n"[j == probSize - 1];
-}
-
-void MathClass::PrintVector(double* v, int n)
-{
-	for (int i = 0; i < n; i++)
-		cout << v[i] << " ";
-	cout << endl;
-}
-
 void MathClass::PrintData()
 {
 	cout << endl << "Given matrix:" << endl;
-	PrintMatrix();
+	printMatrix(probSize, M);
 	cout << endl << "Given vector:" << endl;
-	PrintVector(b, probSize);
+	printVec(probSize,b);
 };

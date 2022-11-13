@@ -12,8 +12,6 @@ public:
 	~MathClass();
 	bool LoadInput();
 	bool isInputInvalid();
-	void PrintMatrix();
-	void PrintVector(double* v, int n);
 	void PrintData();
 
 private:

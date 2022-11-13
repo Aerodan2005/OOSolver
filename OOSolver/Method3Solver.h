@@ -29,7 +29,9 @@ public:
 		}
 
 		DisplayResult(solution, mc->probSize);
-		delete[] mat;
+		if (solution != nullptr) delete[] solution;
+		if (mat != nullptr) delete[] mat;
+
 		return true;
 	}
 
