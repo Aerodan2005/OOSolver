@@ -2,14 +2,13 @@
 #include "Method2Solver.h"
 
 bool Method2Solver::solverProcedure() {
-	cout << "\nsolver Procedure start\n";
 	int S = mc->probSize; // this is a local var for matrix size
 	double*& M = mc->M;  // this is a local var for matrix 
 	double*& b = mc->b; //his is a local var for vector
 	
 	partialPivoting(S,M,b);
 	calcPivot(S, M, b, solution);
-
+	showSolution(S, solution);
 
 	//printMatrix(S,M);
 	//printVec(S,b);
@@ -33,20 +32,17 @@ void Method2Solver::partialPivoting(int s, double*& M, double*& b) {
 void Method2Solver::calcPivot(int Size, double*& M, double*& b, double*& result) {
 
 	result = new double[Size]{0};
-	double sum = 0;
-	for (int row = Size-1; row >=0; row--)	{
+	double sum;
+	for (int row = Size-1; row >=0; row--)	{					// start from last row
 		sum = 0;
-		for (int column = row + 1; column < Size; column++)
-		{
-			sum =+ result[column]*M[Size * row + column];
-			
+		for (int column = row + 1; column < Size; column++) {   // check if have a relevant varible on right side of the matrix
+			sum += result[column]*M[Size * row + column]; 
 		}
 		result[row] = ((b[row] - sum) / M[Size * row + row]);
-	/*	cout << "\n";*/
 	}
-	cout << "-->\n";
-	for (int i = 0; i < Size; i++)
-	{
-		cout << result[i] << "\n";
-	}
+};
+void Method2Solver::showSolution(int Size, double* vec){
+	cout << "The result is\n";
+	printVec(Size, vec);
+	delete solution;
 };

@@ -11,13 +11,11 @@ public:
 	void Init(MathClass* mc) override
 	{
 		this->mc = mc;
-		solver_name = "Pivot Solver";
+		solver_name = "Gaussian Elimination - Partial Pivoting";
 		cout << endl << solver_name << endl;
 	}
 
 	bool Solve()override {
-		//int a = mc->probSize;
-		std::cout << "In Method_2_Solver>>Solve: " << mc->probSize << "\n";
 		solverProcedure();
 		return true;
 	}
@@ -25,4 +23,5 @@ private:
 	bool solverProcedure();
 	void partialPivoting(int S, double*& M, double*& b);
 	void calcPivot(int s, double*& M, double*& b, double*& result);
+	void showSolution(int Size, double* vec);
 };

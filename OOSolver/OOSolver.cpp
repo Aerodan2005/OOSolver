@@ -30,9 +30,9 @@ int main(int argc, char** argv)
 	if (p0.isInputInvalid())
 		return 0;
 
-	bool solver1_flag = false;
+	bool solver1_flag = true;
 	bool solver2_flag = true;
-	bool solver3_flag = false;
+	bool solver3_flag = true;
 
 	// solver 1
 	if (solver1_flag) {
