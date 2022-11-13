@@ -17,6 +17,15 @@ public:
 
 	bool Solve() override
 	{
+		if (mc->probSize == 1)
+		{
+			double* solution = new double[1];
+			solution[0] = mc->b[0] / mc->M[0];
+			DisplayResult(solution, mc->probSize);
+			delete[] solution;
+			return true;
+		}
+
 		double* vec = nullptr;
 		double* Q = nullptr;
 		double* R = nullptr;
@@ -28,6 +37,7 @@ public:
 		if (Q != nullptr) delete[] Q;
 		if (R != nullptr) delete[] R;
 		if (vec != nullptr) delete[] vec;
+		if (solution != nullptr) delete[] solution;
 		return true;
 	}
 
