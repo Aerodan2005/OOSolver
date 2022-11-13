@@ -10,6 +10,10 @@ bool Method2Solver::solverProcedure() {
 	calcPivot(S, M, b, solution);
 	DisplayResult(solution, S);
 	if (solution != nullptr) delete[] solution;
+
+	if (M != nullptr) delete[] M; // its needed??
+	if (b != nullptr) delete[] b;
+
 	return true;
 }
 

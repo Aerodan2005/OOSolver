@@ -16,8 +16,7 @@ public:
 	}
 
 	bool Solve()override {
-		solverProcedure();
-		return true;
+		return (solverProcedure());
 	}
 private:
 	bool solverProcedure();
