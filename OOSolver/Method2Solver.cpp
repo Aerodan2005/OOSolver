@@ -11,8 +11,8 @@ bool Method2Solver::solverProcedure() {
 	DisplayResult(solution, S);
 	if (solution != nullptr) delete[] solution;
 
-	if (M != nullptr) delete[] M; // its needed??
-	if (b != nullptr) delete[] b;
+	//if (M != nullptr) delete[] M; // its needed??
+	//if (b != nullptr) delete[] b;
 
 	return true;
 }
